@@ -3,6 +3,9 @@ const myDate = document.querySelector(".date");
 const greet = document.querySelector(".greeting");
 const slidePrev = document.querySelector(".slide-prev");
 const slideNext = document.querySelector(".slide-next");
+const userCity = document.querySelector(".city");
+const quote = document.querySelector(".quote");
+const author = document.querySelector(".author");
 
 function showTime() {
     const newDate = new Date();
@@ -110,6 +113,14 @@ async function getWeather() {
 }
 getWeather();
 
-const userCity = document.querySelector(".city");
-
 userCity.addEventListener("change", getWeather);
+
+
+async function getQuotes() {  
+    const quotes = `http://quotes.stormconsultancy.co.uk/random.json`;
+    const res = await fetch(quotes);
+    const data = await res.json(); 
+    author.textContent = `${data.author}`;
+    quote.textContent = `${data.quote}`;
+  }
+getQuotes();
